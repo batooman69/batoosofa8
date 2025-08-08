@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Batu Sofa</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Roboto, "Noto Sans KR", sans-serif;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+    header, footer {
+      background: white;
+      padding: 1rem 2rem;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 1.6rem;
+      color: #0070f3;
+      cursor: pointer;
+    }
+    nav a {
+      margin-left: 20px;
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+    }
+    nav a:hover {
+      color: #0070f3;
+    }
+    .hero {
+      background-image: url("제목을 입력해주세요_-001.jpg");
+      background-size: cover;
+      background-position: center;
+      height: 400px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 2rem;
+      font-weight: bold;
+      position: relative;
+      cursor: pointer;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.4);
+    }
+    .hero span {
+      position: relative;
+      z-index: 1;
+    }
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 2rem;
+    }
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+    .product {
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      display:flex;
+      flex-direction:column;
+    }
+    .product img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      display:block;
+    }
+    .product .info {
+      padding: 1rem;
+      flex:1;
+      display:flex;
+      flex-direction:column;
+    }
+    .product .info h4 {
+      margin: 0 0 0.5rem;
+    }
+    .product .info p {
+      margin: 0 0 1rem;
+      color: gray;
+      font-weight:600;
+    }
+    .product .info button {
+      background: #0070f3;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      width: 100%;
+      cursor:pointer;
+      font-weight:600;
+    }
+    .section {
+      background: #eef6ff;
+      border-radius: 10px;
+      padding: 1.5rem;
+      margin-top: 2rem;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    input[type=email], textarea, select {
+      padding: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 0.95rem;
+    }
+    button.subscribe {
+      background: #0070f3;
+      color: white;
+      border: none;
+      padding: 0.5rem;
+      border-radius: 5px;
+      cursor:pointer;
+    }
+    footer {
+      text-align: center;
+      font-size: 0.875rem;
+      color: gray;
+      margin-top: 2rem;
+      padding-bottom: 2rem;
+    }
+
+    /* 리뷰용 (스타) */
+    .stars { display:flex; gap:6px; align-items:center; }
+    .star { font-size:1.6rem; cursor:pointer; color:lightgray; user-select:none; }
+    .star.selected { color: gold; }
+
+    .review-list { margin-top: 1rem; display:flex; flex-direction:column; gap:0.6rem; }
+    .review-item { background:#fff;padding:.75rem;border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,0.04); }
+    .meta{ font-size:0.85rem; color:gray; margin-bottom:0.4rem; }
+
+    .row { display:flex; gap:1rem; align-items:center; flex-wrap:wrap; }
+    .btn-ghost { background:transparent; border:1px solid #ddd; padding:.45rem .75rem; border-radius:6px; cursor:pointer; }
+
+    @media(max-width:600px){
+      .hero{height:240px; font-size:1.2rem}
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <h1 id="logo">Batu Sofa</h1>
+      <nav>
+        <a href="#home" class="nav-link">홈</a>
+        <a href="#home" id="nav-products" class="nav-link">제품</a>
+        <a href="#reviews" id="nav-reviews" class="nav-link">리뷰</a>
+        <a href="#contact" class="nav-link">연락처</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="hero" id="banner"><span>당신의 공간을 위한 완벽한 소파</span></div>
+
+  <!-- main content: 초기에는 홈(제품+섹션)을 그대로 둠. 이 영역을 JS로 교체/복원합니다. -->
+  <div class="container" id="main">
+    <h2>인기 상품</h2>
+    <div class="products">
+      <!-- 4개 상품 카드 (5,6 삭제) -->
+      <div class="product">
+        <img src="KakaoTalk_20250802_232508221_03.jpg" alt="꾸오래" />
+        <div class="info">
+          <h4>꾸오래</h4>
+          <p>₩1,000,000</p>
+          <button data-id="1">자세히 보기</button>
+        </div>
+      </div>
+
+      <div class="product">
+        <img src="KakaoTalk_20250802_232508221.jpg" alt="피오래" />
+        <div class="info">
+          <h4>피오래</h4>
+          <p>₩1,100,000</p>
+          <button data-id="2">자세히 보기</button>
+        </div>
+      </div>
+
+      <div class="product">
+        <img src="KakaoTalk_20250802_232508221_01.jpg" alt="피오래-아이보리" />
+        <div class="info">
+          <h4>피오래-아이보리</h4>
+          <p>₩1,200,000</p>
+          <button data-id="3">자세히 보기</button>
+        </div>
+      </div>
+
+      <div class="product">
+        <img src="KakaoTalk_20250802_232508221_02.jpg" alt="미라클" />
+        <div class="info">
+          <h4>미라클</h4>
+          <p>₩1,300,000</p>
+          <button data-id="4">자세히 보기</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3>고객 리뷰</h3>
+      <p>“정말 편안하고 디자인이 멋진 소파예요! 가족 모두 만족하고 있습니다.”</p>
+      <p>“배송도 빠르고 설치도 간단했습니다. 강력 추천합니다.”</p>
+    </div>
+
+    <div class="section">
+      <h3>뉴스레터 구독</h3>
+      <form id="subscribeForm">
+        <input type="email" id="subEmail" placeholder="이메일 주소를 입력하세요" />
+        <button class="subscribe" type="submit">구독하기</button>
+      </form>
+    </div>
+  </div>
+
+  <footer>
+    © 2025 Batu Sofa. All rights reserved.
+  </footer>
+
+  <script>
+    /**********************************************
+     * 제품 데이터 (수정된 이름 + 이미지 매핑)
+     **********************************************/
+    const PRODUCTS = {
+      1: { id:1, name: "꾸오래", price: "₩1,000,000", img: "KakaoTalk_20250802_232508221_03.jpg", desc: "고급 가죽과 견고한 프레임으로 제작된 클래식 라인의 프리미엄 소파입니다. 장시간 사용에도 편안함 유지." },
+      2: { id:2, name: "피오래", price: "₩1,100,000", img: "KakaoTalk_20250802_232508221.jpg", desc: "부드러운 패브릭 소재와 모던한 디자인의 조화. 공간을 밝게 만드는 컬러 옵션 제공." },
+      3: { id:3, name: "피오래-아이보리", price: "₩1,200,000", img: "KakaoTalk_20250802_232508221_01.jpg", desc: "넓은 좌석과 깊은 쿠션으로 휴식을 극대화한 모델. 가족 모두의 휴식 공간으로 적합합니다." },
+      4: { id:4, name: "미라클", price: "₩1,300,000", img: "KakaoTalk_20250802_232508221_02.jpg", desc: "미니멀한 라인과 뛰어난 내구성의 조합. 세련된 거실을 완성해 줍니다." }
+    };
+
+    const REVIEWS_KEY = 'batu_reviews_v1';
+
+    function loadReviews(){
+      try{
+        const raw = localStorage.getItem(REVIEWS_KEY);
+        return raw ? JSON.parse(raw) : [];
+      }catch(e){
+        return [];
+      }
+    }
+    function saveReviews(list){
+      localStorage.setItem(REVIEWS_KEY, JSON.stringify(list));
+    }
+
+    // 초기화: 메인 영역의 초기 HTML을 저장해두고 라우팅 준비
+    const mainEl = document.getElementById('main');
+    const initialHomeHTML = mainEl.innerHTML;
+
+    // 바인딩: 홈의 "자세히 보기" 버튼들에 클릭 이벤트 추가
+    function attachHomeButtons(){
+      const buttons = mainEl.querySelectorAll('.product .info button[data-id]');
+      buttons.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          const id = btn.dataset.id;
+          location.hash = '#product-' + id;
+        });
+      });
+    }
+
+    // 경로 처리
+    window.addEventListener('hashchange', handleRoute);
+    window.addEventListener('load', () => {
+      // banner / logo 클릭 처리
+      document.getElementById('banner').addEventListener('click', ()=> location.hash = '#home');
+      document.getElementById('logo').addEventListener('click', ()=> location.hash = '#home');
+      // 구독 폼, 초기 버튼 바인딩
+      document.getElementById('subscribeForm').addEventListener('submit', (e)=>{
+        e.preventDefault();
+        const email = document.getElementById('subEmail').value.trim();
+        if(!email){ alert('이메일을 입력하세요.'); return; }
+        alert('구독해주셔서 감사합니다: ' + email);
+        document.getElementById('subEmail').value = '';
+      });
+      attachHomeButtons();
+      handleRoute();
+    });
+
+    function handleRoute(){
+      const hash = location.hash || '#home';
+      // update nav active style
+      document.querySelectorAll('nav a').forEach(a=>{
+        a.style.fontWeight = (a.getAttribute('href') === hash) ? '700' : '500';
+      });
+
+      if(hash === '#home' || hash === '' || hash === '#'){
+        // 복원 홈
+        mainEl.innerHTML = initialHomeHTML;
+        // 재연결(버튼/구독 폼 등)
+        document.getElementById('subscribeForm').addEventListener('submit', (e)=>{
+          e.preventDefault();
+          const email = document.getElementById('subEmail').value.trim();
+          if(!email){ alert('이메일을 입력하세요.'); return; }
+          alert('구독해주셔서 감사합니다: ' + email);
+          document.getElementById('subEmail').value = '';
+        });
+        attachHomeButtons();
+      } else if(hash.startsWith('#product-')){
+        const id = hash.split('-')[1];
+        renderProductDetail(id);
+      } else if(hash === '#reviews'){
+        renderReviewsPage();
+      } else if(hash === '#contact'){
+        renderContact();
+      } else {
+        // fallback to home
+        location.hash = '#home';
+      }
+    }
+
+    /* =========================
+       제품 상세 페이지 (자세히 보기)
+       - 해당 제품 리뷰 작성 폼 포함
+       ========================= */
+    function renderProductDetail(id){
+      const p = PRODUCTS[id];
+      if(!p){
+        mainEl.innerHTML = `<section><p>해당 제품을 찾을 수 없습니다.</p></section>`;
+        return;
+      }
+      mainEl.innerHTML = `
+        <section>
+          <div style="display:flex; gap:1rem; align-items:center; justify-content:space-between; margin-bottom:1rem;">
+            <h2>${escapeHtml(p.name)}</h2>
+            <div>
+              <button class="btn-ghost" id="backToHome">제품 목록으로</button>
+              <button class="btn-ghost" id="goToReviews">리뷰 보기</button>
+            </div>
+          </div>
+
+          <div style="display:grid; grid-template-columns:1fr; gap:1rem;">
+            <div>
+              <img src="${p.img}" alt="${escapeHtml(p.name)}" style="width:100%; border-radius:8px; box-shadow:0 4px 12px rgba(0,0,0,0.06)" />
+            </div>
+            <div>
+              <p style="color:gray; font-weight:600;">${p.price}</p>
+              <p style="margin-top:0.5rem;">${escapeHtml(p.desc)}</p>
+
+              <div style="margin-top:1rem; background:#fff; padding:1rem; border-radius:8px; box-shadow:0 1px 3px rgba(0,0,0,0.04);">
+                <h4>이 제품에 대한 리뷰 남기기</h4>
+                <div id="detailStarWrap" class="stars" style="margin-bottom:0.6rem;">
+                  <span class="star" data-value="1">★</span>
+                  <span class="star" data-value="2">★</span>
+                  <span class="star" data-value="3">★</span>
+                  <span class="star" data-value="4">★</span>
+                  <span class="star" data-value="5">★</span>
+                </div>
+                <textarea id="detailReviewText" placeholder="리뷰를 입력하세요" style="width:100%; height:90px; padding:.6rem; border:1px solid #e6e6e6; border-radius:6px;"></textarea>
+                <div style="display:flex; gap:.5rem; margin-top:.6rem;">
+                  <button id="submitDetailReview" style="background:#0070f3;color:#fff;border:none;padding:.5rem .8rem;border-radius:6px;cursor:pointer;">등록</button>
+                </div>
+              </div>
+
+              <div style="margin-top:1rem;">
+                <h4>이 제품의 리뷰</h4>
+                <div id="detailReviewList" class="review-list"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+      `;
+
+      document.getElementById('backToHome').addEventListener('click', ()=> location.hash = '#home');
+      document.getElementById('goToReviews').addEventListener('click', ()=> location.hash = '#reviews');
+
+      // 별 선택 로직
+      let selectedRating = 0;
+      const stars = document.querySelectorAll('#detailStarWrap .star');
+      stars.forEach(s=>{
+        s.addEventListener('click', ()=>{
+          selectedRating = Number(s.dataset.value);
+          stars.forEach(ss => ss.classList.toggle('selected', Number(ss.dataset.value) <= selectedRating));
+        });
+      });
+
+      // 제출
+      document.getElementById('submitDetailReview').addEventListener('click', ()=>{
+        const text = document.getElementById('detailReviewText').value.trim();
+        if(selectedRating === 0){ alert('별점을 선택해주세요.'); return; }
+        if(!text){ alert('리뷰 내용을 입력해주세요.'); return; }
+        const list = loadReviews();
+        list.push({ rating: selectedRating, text, date: new Date().toISOString(), productId: Number(id) });
+        saveReviews(list);
+        // 리셋
+        document.getElementById('detailReviewText').value = '';
+        selectedRating = 0;
+        stars.forEach(ss=> ss.classList.remove('selected'));
+        renderProductDetail(id); // 다시 렌더하여 리뷰 목록 갱신
+        alert('리뷰가 등록되었습니다.');
+      });
+
+      // 렌더 제품 관련 리뷰
+      renderDetailReviews(id);
+    }
+
+    function renderDetailReviews(productId){
+      const all = loadReviews();
+      const related = all.filter(r => r.productId && Number(r.productId) === Number(productId));
+      const container = document.getElementById('detailReviewList');
+      if(!container) return;
+
+      if(related.length === 0){
+        container.innerHTML = `<p>아직 등록된 리뷰가 없습니다.</p>`;
+        return;
+      }
+
+      container.innerHTML = related.map(r=>{
+        return `<div class="review-item">
+          <div class="stars">${renderStars(r.rating)}</div>
+          <p>${escapeHtml(r.text)}</p>
+          <div class="meta">${new Date(r.date).toLocaleString()}</div>
+        </div>`;
+      }).join('');
+    }
+
+    function renderStars(n){
+      let starsHtml = '';
+      for(let i=1; i<=5; i++){
+        starsHtml += i <= n ? '★' : '☆';
+      }
+      return starsHtml;
+    }
+
+    /* =========================
+       리뷰 페이지 (전체 리뷰 모음)
+       ========================= */
+    function renderReviewsPage(){
+      const all = loadReviews();
+
+      mainEl.innerHTML = `
+        <section>
+          <h2>전체 리뷰 모음</h2>
+          <button class="btn-ghost" id="backToHomeFromReviews">홈으로 돌아가기</button>
+          <div style="margin-top:1rem;">
+            <p>총 ${all.length}개의 리뷰가 등록되어 있습니다.</p>
+            <div class="review-list" id="reviewListAll"></div>
+          </div>
+        </section>
+      `;
+
+      document.getElementById('backToHomeFromReviews').addEventListener('click', ()=> location.hash = '#home');
+
+      const reviewListAll = document.getElementById('reviewListAll');
+      if(all.length === 0){
+        reviewListAll.innerHTML = '<p>아직 리뷰가 없습니다.</p>';
+        return;
+      }
+      reviewListAll.innerHTML = all.map(r=>{
+        const productName = PRODUCTS[r.productId]?.name || '알 수 없는 제품';
+        return `<div class="review-item">
+          <div class="stars">${renderStars(r.rating)}</div>
+          <p>${escapeHtml(r.text)}</p>
+          <div class="meta">${new Date(r.date).toLocaleString()}</div>
+          <div style="font-size:0.9rem; color:#555; font-weight:600;">제품명: ${escapeHtml(productName)}</div>
+        </div>`;
+      }).join('');
+    }
+
+    /* =========================
+       연락처 페이지
+       ========================= */
+    function renderContact(){
+      mainEl.innerHTML = `
+        <section>
+          <h2>연락처</h2>
+          <p>문의사항은 아래 이메일로 연락주세요.</p>
+          <p><strong>이메일:</strong> batu@example.com</p>
+          <p><strong>전화번호:</strong> 010-1234-5678</p>
+          <button class="btn-ghost" id="backToHomeFromContact">홈으로 돌아가기</button>
+        </section>
+      `;
+
+      document.getElementById('backToHomeFromContact').addEventListener('click', ()=> location.hash = '#home');
+    }
+
+    /* =========================
+       보안: HTML 이스케이프 함수
+       ========================= */
+    function escapeHtml(text) {
+      if(!text) return '';
+      return text.replace(/&/g, "&amp;")
+                 .replace(/</g, "&lt;")
+                 .replace(/>/g, "&gt;")
+                 .replace(/"/g, "&quot;")
+                 .replace(/'/g, "&#039;");
+    }
+  </script>
+
+</body>
+</html>
